@@ -113,6 +113,66 @@ namespace WPF_Calculator
                 txtDisplay.Text = input;
             }
         }
+        // Handles keyboard input
+        private void Calculator_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle numeric keys (0-9)
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                HandleNumberInput(e.Key.ToString());
+            }
+
+            // Handle operator keys (+, -, *, /, %, etc.)
+            if (e.Key == Key.Add || e.Key == Key.Subtract || e.Key == Key.Multiply || e.Key == Key.Divide)
+            {
+                HandleOperatorInput(e.Key.ToString());
+            }
+
+            // Handle percent key (Shift+5 for '%')
+            if (e.Key == Key.D5 && Keyboard.Modifiers == ModifierKeys.Shift)
+            {
+                HandleOperatorInput("%");
+            }
+
+            // Handle the decimal point
+            if (e.Key == Key.OemPeriod || e.Key == Key.Decimal)
+            {
+                HandleDecimalPoint();
+            }
+
+            // Handle backspace
+            if (e.Key == Key.Back)
+            {
+                Backspace_Click(sender, e);
+            }
+
+            // Handle the equals key (Enter or NumPad Enter)
+            if (e.Key == Key.Enter || e.Key == Key.Return)
+            {
+
+                Equals_Click(sender, e);
+            }
+
+            // Handle clear (Escape)
+            if (e.Key == Key.Escape)
+            {
+                Clear_Click(sender, e);
+            }
+        }
+
+        // Handle number input from keyboard (0-9)
+        private void HandleNumberInput(string key)
+        {
+            if (isNewCalculation) // Start fresh after a calculation
+            {
+                input = "";
+                isNewCalculation = false;
+            }
+
+            input += key.Replace("D", "").Replace("NumPad", "");
+            txtDisplay.Text = input;
+        }
+
 
     }
 }
