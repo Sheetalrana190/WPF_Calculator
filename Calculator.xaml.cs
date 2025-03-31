@@ -93,5 +93,26 @@ namespace WPF_Calculator
             isNewCalculation = true;
         }
 
+        // Handles the clear button
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            input = "";
+            firstNumber = 0;
+            secondNumber = 0;
+            currentOperator = "";
+            txtDisplay.Text = "";
+            isNewCalculation = false;
+        }
+
+        // Handles the backspace button
+        private void Backspace_Click(object sender, RoutedEventArgs e)
+        {
+            if (input.Length > 0)
+            {
+                input = input.Substring(0, input.Length - 1);
+                txtDisplay.Text = input;
+            }
+        }
+
     }
 }
