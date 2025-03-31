@@ -54,5 +54,44 @@ namespace WPF_Calculator
             isNewCalculation = false;
         }
 
+        // Handles the equals button
+        private void Equals_Click(object sender, RoutedEventArgs e)
+        {
+            if (input == "" || currentOperator == "") return;
+
+            secondNumber = Convert.ToDecimal(input);
+            decimal result = 0;
+
+            switch (currentOperator)
+            {
+                case "+":
+                    result = firstNumber + secondNumber;
+                    break;
+                case "-":
+                    result = firstNumber - secondNumber;
+                    break;
+                case "*":
+                    result = firstNumber * secondNumber;
+                    break;
+                case "/":
+                    if (secondNumber != 0)
+                        result = firstNumber / secondNumber;
+                    else
+                    {
+                        MessageBox.Show("Cannot divide by zero!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                    break;
+                case "%":
+                    result = firstNumber % secondNumber;
+                    break;
+            }
+
+            txtDisplay.Text = result.ToString();
+            input = result.ToString();
+            currentOperator = "";
+            isNewCalculation = true;
+        }
+
     }
 }
