@@ -14,11 +14,32 @@ namespace WPF_Calculator
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Calculator : Window
     {
-        public MainWindow()
+        private string input = "";
+        private string currentOperator = "";
+        private decimal firstNumber, secondNumber;
+        private bool isNewCalculation = false; // Detect new calculation
+
+        public Calculator()
         {
             InitializeComponent();
+            this.KeyDown += Calculator_KeyDown; // Handle key events
+        }
+
+        // Handles number button clicks
+        private void Number_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+
+            if (isNewCalculation) // Start fresh after previous calculation
+            {
+                input = "";
+                isNewCalculation = false;
+            }
+
+            input += button.Content.ToString();
+            txtDisplay.Text = input;
         }
     }
 }
