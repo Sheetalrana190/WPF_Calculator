@@ -172,6 +172,34 @@ namespace WPF_Calculator
             input += key.Replace("D", "").Replace("NumPad", "");
             txtDisplay.Text = input;
         }
+        // Handle operator input (+, -, *, /, %, etc.)
+        private void HandleOperatorInput(string key)
+        {
+            if (input == "") return;
+
+            firstNumber = Convert.ToDecimal(input);
+            switch (key)
+            {
+                case "Add":
+                    currentOperator = "+";
+                    break;
+                case "Subtract":
+                    currentOperator = "-";
+                    break;
+                case "Multiply":
+                    currentOperator = "*";
+                    break;
+                case "Divide":
+                    currentOperator = "/";
+                    break;
+                case "%":
+                    currentOperator = "%";
+                    break;
+            }
+            input = "";  // Reset input for second number
+            txtDisplay.Text = firstNumber + " " + currentOperator;
+            isNewCalculation = false;
+        }
 
 
     }
