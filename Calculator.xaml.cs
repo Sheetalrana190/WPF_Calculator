@@ -201,6 +201,15 @@ namespace WPF_Calculator
             isNewCalculation = false;
         }
 
+        // Handle the decimal point input
+        private void HandleDecimalPoint()
+        {
+            if (input.Contains("."))
+                return; // Prevent adding more than one decimal point
+
+            input += ".";
+            txtDisplay.Text = input;
+        }
 
     }
 }
