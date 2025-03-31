@@ -41,5 +41,18 @@ namespace WPF_Calculator
             input += button.Content.ToString();
             txtDisplay.Text = input;
         }
+        // Handles operator button clicks
+        private void Operator_Click(object sender, RoutedEventArgs e)
+        {
+            if (input == "") return;
+
+            firstNumber = Convert.ToDecimal(input);
+            Button button = (Button)sender;
+            currentOperator = button.Content.ToString();
+            input = "";  // Reset input for the second number
+            txtDisplay.Text = firstNumber + " " + currentOperator;
+            isNewCalculation = false;
+        }
+
     }
 }
