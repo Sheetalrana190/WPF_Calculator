@@ -1,4 +1,13 @@
-﻿using System.Text;
+﻿/*
+* Author: Sheetal Rana
+* Date: 31 March 2025
+* Project: Assignment 3 : Task_1
+* Description: Create a user interface for the calculator app inputting the data required for the
+application's functionality Input Validation and Basic Arithmetic Operations (+, -, , /, %) with Clear and Backspace.
+Utilize WPF controls and mechanisms for accepting data from the screen fields and the keyboard.  
+*
+*/
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
